@@ -9,3 +9,15 @@ body {
 h2 {
     font-size: 2.5rem;
 }
+
+.u-full-width {
+    width: 100%;
+}
+
+table td {
+    padding: 7px;
+}
+
+table {
+    font-size: 1.2rem;
+}
