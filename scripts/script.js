@@ -5,4 +5,5 @@ $(document).ready(function() {
                 "#d35400", "#c0392b", "#7f8c8d"];
     var color = colors[Math.floor(Math.random() * colors.length)];
     $("body").css("background-color", color);
+    $(".buttons > a").css("color", color);
 });

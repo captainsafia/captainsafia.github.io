@@ -1,12 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Dosis:700);
+@import url(https://fonts.googleapis.com/css?family=Raleway');
 
 body {
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: white;
     padding: 20px;
+    text-align: center;
 }
 
-h2 {
+.main {
     font-size: 2.5rem;
 }
 
@@ -20,4 +21,33 @@ table td {
 
 table {
     font-size: 1.2rem;
+}
+
+table th {
+    font-style: bold;
+    text-align: left;
+}
+
+a {
+    color: white;
+    font-style: bold;
+}
+
+.buttons > a {
+    text-decoration: none;
+    font-size: 2.0rem;
+    background-color: white;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    -webkit-border-radius: 4px;
+    -moz-border-raidus: 4px;
+    border-raidus: 4px;
+}
+
+.header-image {
+    width: 300px;
+    -webkit-border-radius: 150px;
+    -moz-border-raidus: 150px;
+    border-raidus: 150px;
 }
