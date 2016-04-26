@@ -37,8 +37,7 @@ a {
     text-decoration: none;
     font-size: 2.0rem;
     background-color: white;
-    margin: 10px;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     -webkit-border-radius: 4px;
     -moz-border-raidus: 4px;
@@ -46,6 +45,7 @@ a {
 }
 
 .header-image {
+    margin-bottom: 30px;
     width: 300px;
     -webkit-border-radius: 150px;
     -moz-border-raidus: 150px;
