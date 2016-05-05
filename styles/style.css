@@ -2,52 +2,28 @@
 
 body {
     font-family: 'Raleway', sans-serif;
-    color: white;
     padding: 20px;
-    text-align: center;
 }
 
-.main {
-    font-size: 2.5rem;
+h4, h5 {
+    display: inline-block;
+    padding-right: 20px;
 }
 
-.u-full-width {
-    width: 100%;
-}
-
-table td {
-    padding: 7px;
-}
-
-table {
-    font-size: 1.2rem;
-}
-
-table th {
-    font-style: bold;
-    text-align: left;
-}
-
-a {
-    color: white;
-    font-style: bold;
-}
-
-.buttons > a {
-    text-decoration: none;
-    font-size: 2.0rem;
+.header {
     background-color: white;
+    position: fixed;
+    top: 0;
+    z-index: 100;
     padding: 10px;
-    text-align: center;
-    -webkit-border-radius: 4px;
-    -moz-border-raidus: 4px;
-    border-raidus: 4px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 7em;
 }
 
-.header-image {
-    margin-bottom: 30px;
-    width: 300px;
-    -webkit-border-radius: 150px;
-    -moz-border-raidus: 150px;
-    border-raidus: 150px;
+.body {
+    margin-top: 4em;
+}
+
+.footer a {
+    margin-right: 20px;
 }
