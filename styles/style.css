@@ -10,3 +10,7 @@ h4, h5 {
     display: inline-block;
     padding-right: 20px;
 }
+
+#contact a {
+    margin-right: 10px;
+}
