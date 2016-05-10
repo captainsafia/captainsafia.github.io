@@ -1,7 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway');
+@import url(@import url(https://fonts.googleapis.com/css?family=Poppins:300);');
 
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-style: strong;
     padding: 20px;
 }
