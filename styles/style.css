@@ -10,21 +10,3 @@ h4, h5 {
     display: inline-block;
     padding-right: 20px;
 }
-
-.header {
-    background-color: white;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 7em;
-}
-
-.body {
-    margin-top: 4em;
-}
-
-.footer a {
-    margin-right: 20px;
-}
