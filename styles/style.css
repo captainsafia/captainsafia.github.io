@@ -1,21 +1,114 @@
-@import url(@import url(https://fonts.googleapis.com/css?family=Poppins:300);');
+@import 'https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans';
 
+/* Font Stylings */
 body {
-    font-family: 'Poppins', sans-serif;
-    font-style: strong;
-    padding: 20px;
+	font-family: 'Merriweather', sans-serif;
 }
 
-h4, h5 {
-    display: inline-block;
-    padding-right: 20px;
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Merriweather Sans', serif;
 }
 
-#contact a {
-    margin-right: 10px;
+/* Header Stylings */
+.name {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	text-align: center;
 }
 
-.footer {
-    margin-top: 3em;
-    text-align: center;
+/* Nav Bar Stylings */
+nav ul {
+	list-style: none;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+nav li {
+	padding-top: 15px;
+	padding-top: 15px;
+	padding-right: 2%;
+	padding-left: 2%;
+	display: inline;
+}
+
+nav li a {
+	display: inline-block;
+	font-family: 'Merriweather Sans', serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #7f8c8d;
+}
+
+/* Main Header Styling */
+.main-header {
+	padding-bottom: 20px;
+	border-bottom: 2px solid #ecf0f1;
+}
+
+/* Main Body Styling */
+.main {
+	padding: 25px;
+	margin: 50px;
+	border: 2px solid #ecf0f1;
+}
+
+.main-content {
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.main-content img {
+	width: 80%;
+	padding: 20px;
+	display: block;
+	margin: auto;
+}
+
+.main-content p {
+	line-height: 1.7em;
+}
+
+/* Table Stylings */
+.main-content table td {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.main-content table td {
+	border-top: 2px solid #ecf0f1;
+}
+
+/* Footer Stylings */
+footer {
+	border-top: 2px solid #ecf0f1;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+footer p {
+	display: inline;
+}
+
+footer .social-icons {
+	float:right;
+}
+
+footer .social-icons ul {
+	list-style: none;
+	display: inline;
+}
+
+footer .social-icons ul li {
+	display: inline;
+}
+
+footer .social-icons ul li a {
+	text-decoration: none;
+	color: #000;
 }
