@@ -1,12 +1,13 @@
-@import 'https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans';
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Andika');
 
 /* Font Stylings */
 body {
-	font-family: 'Merriweather', sans-serif;
+	font-family: 'Andika', sans-serif;
+    font-size: 1.05em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Merriweather Sans', serif;
+	font-family: 'Amatic SC', cursive;
 }
 
 /* Header Stylings */
@@ -50,19 +51,18 @@ nav li a {
 .main {
 	padding: 25px;
 	margin: 50px;
-	border: 2px solid #ecf0f1;
 }
 
 .main-content {
-	margin-left: 20%;
-	margin-right: 20%;
+	margin-left: 33%;
+	margin-right: 33%;
 	margin-top: 50px;
 	margin-bottom: 50px;
 }
 
 .main-content img {
-	width: 80%;
-	padding: 20px;
+	width: 60%;
+    border-radius: 50%;
 	display: block;
 	margin: auto;
 }
@@ -73,19 +73,19 @@ nav li a {
 
 /* Table Stylings */
 .main-content table td {
-	padding-top: 30px;
-	padding-bottom: 30px;
-	padding-left: 3%;
-	padding-right: 3%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
 .main-content table td {
-	border-top: 2px solid #ecf0f1;
+    border-top: 2px solid #ecf0f1;
 }
+
 
 /* Footer Stylings */
 footer {
-	border-top: 2px solid #ecf0f1;
 	width: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -96,7 +96,7 @@ footer p {
 }
 
 footer .social-icons {
-	float:right;
+    text-align: center;
 }
 
 footer .social-icons ul {
