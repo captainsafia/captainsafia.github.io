@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Andika');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Shadows+Into+Light');
 
 /* Font Stylings */
 body {
-	font-family: 'Andika', sans-serif;
+	font-family: 'Roboto', sans-serif;
     font-size: 1.05em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Amatic SC', cursive;
+	font-family: 'Shadows into Light', cursive;
 }
 
 /* Header Stylings */
@@ -54,8 +54,8 @@ nav li a {
 }
 
 .main-content {
-	margin-left: 25%;
-	margin-right: 25%;
+    margin-left: 25%;
+    margin-right: 25%;
 	margin-top: 50px;
 	margin-bottom: 50px;
 }
