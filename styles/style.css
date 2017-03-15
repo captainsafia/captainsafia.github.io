@@ -61,7 +61,7 @@ input[type=email] {
     border: none;
     border-bottom: 1px solid #ecf0f1;
     outline: none;
-    font-size: 0.875em;
+    font-size: 1rem;
 }
 
 input[type=submit] {
