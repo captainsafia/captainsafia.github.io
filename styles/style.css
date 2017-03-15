@@ -57,6 +57,7 @@ form {
 input[type=email] {
     width: 45%;
     padding: 10px;
+    margin-right: 2%;
     border: none;
     border-bottom: 1px solid #ecf0f1;
     outline: none;
