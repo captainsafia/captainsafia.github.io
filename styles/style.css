@@ -1,114 +1,73 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto|Shadows+Into+Light');
-
-/* Font Stylings */
 body {
-	font-family: 'Roboto', sans-serif;
-    font-size: 1.05em;
+    line-height: 1.5;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Shadows into Light', cursive;
-}
-
-/* Header Stylings */
-.name {
-	padding-top: 15px;
-	padding-bottom: 15px;
-	text-align: center;
-}
-
-/* Nav Bar Stylings */
-nav ul {
-	list-style: none;
-	text-align: center;
-	padding: 0;
-	margin: 0;
-}
-
-nav li {
-	padding-top: 15px;
-	padding-top: 15px;
-	padding-right: 2%;
-	padding-left: 2%;
-	display: inline;
-}
-
-nav li a {
-	display: inline-block;
-	font-family: 'Merriweather Sans', serif;
-	text-transform: uppercase;
-	text-decoration: none;
-	color: #7f8c8d;
-}
-
-/* Main Header Styling */
-.main-header {
-	padding-bottom: 20px;
-	border-bottom: 2px solid #ecf0f1;
-}
-
-/* Main Body Styling */
-.main {
-	padding: 25px;
-	margin: 50px;
-}
-
-.main-content {
-    margin-left: 25%;
-    margin-right: 25%;
-	margin-top: 50px;
-	margin-bottom: 50px;
-}
-
-.main-content img {
-	width: 60%;
-    border-radius: 50%;
-	display: block;
-	margin: auto;
-}
-
-.main-content p {
-	line-height: 1.7em;
-}
-
-/* Table Stylings */
-.main-content table td {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 3%;
-    padding-right: 3%;
-}
-
-.main-content table td {
-    border-top: 2px solid #ecf0f1;
-}
-
-
-/* Footer Stylings */
-footer {
-	width: 100%;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-footer p {
-	display: inline;
-}
-
-footer .social-icons {
+header > h1 {
+    font-family: serif;
+    font-size: 2rem;
     text-align: center;
 }
 
-footer .social-icons ul {
-	list-style: none;
-	display: inline;
+figure {
+    text-align: center;
 }
 
-footer .social-icons ul li {
-	display: inline;
+figure img {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
 }
 
-footer .social-icons ul li a {
-	text-decoration: none;
-	color: #000;
+h2 {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    border-top: 2px solid #ecf0f1;
+    padding-top: 15px;
+}
+
+p {
+    word-break: break-word;
+}
+
+a {
+    color: #e74c3c;
+    text-decoration: none;
+}
+
+footer {
+    margin: 50px 0;
+    border-top: 2px solid #ecf0f1;
+}
+
+footer p {
+    font-size: 0.875rem;
+}
+
+table td {
+    border-top: 2px solid #ecf0f1;
+    padding: 3%;
+}
+
+form {
+    text-align: center;
+    padding: 10px;
+}
+
+input[type=email] {
+    width: 45%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ecf0f1;
+    outline: none;
+    font-size: 0.875em;
+}
+
+input[type=submit] {
+    width: 45%;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+    background-color: white;
+    text-transform: uppercase;
+    padding: 10px;
 }
