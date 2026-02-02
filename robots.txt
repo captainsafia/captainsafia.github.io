@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://safia.rocks/sitemap.xml
+Sitemap: https://captainsafia.com/sitemap.xml

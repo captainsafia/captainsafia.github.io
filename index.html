@@ -1,91 +1,250 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <title>Safia Abdalla</title>
-      <meta
-         name="description"
-         content="Safia Abdalla is a software engineer, speaker, and writer passionate about web frameworks and open source."
-         />
-      <meta name="robots" content="index, follow" />
-      <meta name="referrer" content="always" />
-      <meta property="og:title" content="Safia Abdalla" />
-      <meta
-         property="og:description"
-         content="Safia Abdalla is a software engineer, speaker, and writer passionate about developer tooling and open source."
-         />
-      <meta name="twitter:title" content="Safia Abdalla" />
-      <meta
-         name="twitter:description"
-         content="Safia Abdalla is a software engineer, speaker, and writer passionate about developer tooling and open source."
-         />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:site" content="@captainsafia" />
-      <meta name="twitter:creator" content="@captainsafia" />
-      <!-- Favicon -->
-      <link rel="icon" type="image/png" href="images/favicon.png" sizes="32x32" />
-      <!-- Styles -->
-      <link
-         rel="stylesheet"
-         href="assets/css/portfolio.css"
-         type="text/css"
-         media="screen"
-         />
-      <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <script type="application/ld+json">
-      {
-         "@context": "https://schema.org",
-         "@type": "Person",
-         "name": "Safia Abdalla",
-         "url": "https://safia.rocks",
-         "image": "https://safia.rocks/images/background.jpg",
-         "jobTitle": "Principal Software Engineer",
-         "worksFor": {
-            "@type": "Organization",
-            "name": "Microsoft"
-         },
-         "alumniOf": {
-            "@type": "Organization",
-            "name": "Northwestern University"
-         },
-         "description": "Software engineer, speaker, and writer passionate about developer tooling and open source.",
-         "sameAs": [
-            "https://blog.safia.rocks",
-            "https://captainsafia.com",
-            "https://github.com/captainsafia",
-            "https://bsky.app/profile/captainsafia.com",
-            "https://www.linkedin.com/in/safiaabdalla/",
-            "https://twitter.com/captainsafia"
-         ],
-         "email": "safia@safia.rocks"
-      }
-      </script>
-   </head>
-   <body id="portfolio" class="portfolio-template">
-      <div class="portfolio-container">
-         <div class="portfolio-content">
-            <div class="profile-image">
-               <div class="profile-background-image"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Safia Abdalla</title>
+        <meta
+            name="description"
+            content="Safia Abdalla is a software engineer, speaker, and writer passionate about developer tooling and open source."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="referrer" content="always" />
+        <meta property="og:title" content="Safia Abdalla" />
+        <meta
+            property="og:description"
+            content="Safia Abdalla is a software engineer, speaker, and writer passionate about developer tooling and open source."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://safia.rocks" />
+        <meta
+            property="og:image"
+            content="https://safia.rocks/images/background.jpg"
+        />
+        <meta name="twitter:title" content="Safia Abdalla" />
+        <meta
+            name="twitter:description"
+            content="Safia Abdalla is a software engineer, speaker, and writer passionate about developer tooling and open source."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@captainsafia" />
+        <meta name="twitter:creator" content="@captainsafia" />
+        <meta
+            name="twitter:image"
+            content="https://safia.rocks/images/background.jpg"
+        />
+        <!-- Canonical -->
+        <link rel="canonical" href="https://captainsafia.com" />
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            type="image/png"
+            href="images/favicon.png"
+            sizes="32x32"
+        />
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <!-- Preload LCP image -->
+        <link
+            rel="preload"
+            as="image"
+            href="images/background.jpg"
+            fetchpriority="high"
+        />
+        <!-- Styles -->
+        <link
+            rel="stylesheet"
+            href="assets/css/portfolio.css"
+            type="text/css"
+            media="screen"
+        />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta
+            name="theme-color"
+            content="#ffffff"
+            media="(prefers-color-scheme: light)"
+        />
+        <meta
+            name="theme-color"
+            content="#0a0a0a"
+            media="(prefers-color-scheme: dark)"
+        />
+        <!-- DNS Prefetch -->
+        <link rel="dns-prefetch" href="https://blog.safia.rocks" />
+        <link rel="dns-prefetch" href="https://github.com" />
+        <link rel="dns-prefetch" href="https://bsky.app" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Safia Abdalla",
+                "url": "https://safia.rocks",
+                "image": "https://safia.rocks/images/background.jpg",
+                "jobTitle": "Software Engineer",
+                "worksFor": {
+                    "@type": "Organization",
+                    "name": "Warp"
+                },
+                "alumniOf": {
+                    "@type": "Organization",
+                    "name": "Northwestern University"
+                },
+                "description": "Software engineer, speaker, and writer passionate about developer tooling and open source.",
+                "sameAs": [
+                    "https://blog.safia.rocks",
+                    "https://captainsafia.com",
+                    "https://safia.dev",
+                    "https://github.com/captainsafia",
+                    "https://bsky.app/profile/captainsafia.com",
+                    "https://www.linkedin.com/in/safiaabdalla/",
+                    "https://x.com/captainsafia"
+                ],
+                "email": "safia@safia.rocks"
+            }
+        </script>
+    </head>
+    <body id="portfolio" class="portfolio-template">
+        <div class="portfolio-container">
+            <div class="portfolio-content">
+                <div class="profile-image">
+                    <img
+                        src="images/background.jpg"
+                        alt="Safia Abdalla"
+                        width="96"
+                        height="96"
+                        fetchpriority="high"
+                    />
+                </div>
+                <div class="portfolio-intro">
+                    <h1>Safia Abdalla</h1>
+                </div>
+                <div class="portfolio-bio">
+                    <p>
+                        I'm a software engineer at
+                        <a
+                            href="https://warp.dev"
+                            target="_blank"
+                            class="portfolio-link"
+                            >Warp</a
+                        >
+                        working on building the agentic development environment
+                        of the future. Previously, I worked at Microsoft, where
+                        I built
+                        <a
+                            href="https://github.com/dotnet/aspnetcore"
+                            target="_blank"
+                            class="portfolio-link"
+                            >web frameworks</a
+                        >
+                        <a
+                            href="https://github.com/dotnet/aspire"
+                            target="_blank"
+                            class="portfolio-link"
+                            >and SDKs</a
+                        >
+                        to help devs build cloud-scale services. I'm deeply
+                        involved in the open source community and believe that
+                        sharing software in open and distributed formats is the
+                        best way to build interesting things.
+                    </p>
+                </div>
+                <ul class="portfolio-links">
+                    <li>
+                        I write about what I'm building on my
+                        <a
+                            href="https://blog.safia.rocks"
+                            target="_blank"
+                            rel="noopener"
+                            class="portfolio-link"
+                            aria-label="blog (opens in new tab)"
+                            >blog <span aria-hidden="true">→</span></a
+                        >
+                    </li>
+                    <li>
+                        I maintain a list of side projects
+                        <a
+                            href="https://safia.dev"
+                            target="_blank"
+                            rel="noopener"
+                            class="portfolio-link"
+                            aria-label="projects (opens in new tab)"
+                            >in this gallery
+                            <span aria-hidden="true">→</span></a
+                        >
+                    </li>
+                    <li>
+                        Find me on
+                        <a
+                            href="https://x.com/captainsafia"
+                            target="_blank"
+                            rel="noopener"
+                            class="portfolio-link"
+                            aria-label="twitter/x (opens in new tab)"
+                            >twitter/x <span aria-hidden="true">→</span></a
+                        >,
+                        <a
+                            href="https://bsky.app/profile/captainsafia.com"
+                            target="_blank"
+                            rel="noopener"
+                            class="portfolio-link"
+                            aria-label="bluesky (opens in new tab)"
+                            >bluesky <span aria-hidden="true">→</span></a
+                        >, or
+                        <a
+                            href="https://www.linkedin.com/in/safiaabdalla/"
+                            target="_blank"
+                            rel="noopener"
+                            class="portfolio-link"
+                            aria-label="linkedin (opens in new tab)"
+                            >linkedin <span aria-hidden="true">→</span></a
+                        >
+                    </li>
+                    <li>
+                        Most of my code lives on
+                        <a
+                            href="https://github.com/captainsafia"
+                            target="_blank"
+                            rel="noopener"
+                            class="portfolio-link"
+                            aria-label="github (opens in new tab)"
+                            >github <span aria-hidden="true">→</span></a
+                        >
+                    </li>
+                    <li>
+                        See what I'm building on
+                        <a
+                            href="https://cl.safia.dev"
+                            target="_blank"
+                            rel="noopener"
+                            class="portfolio-link"
+                            aria-label="devlog (opens in new tab)"
+                            >my devlog <span aria-hidden="true">→</span></a
+                        >
+                    </li>
+                    <li>
+                        Reach me directly via
+                        <a
+                            href="mailto:safia@safia.rocks"
+                            class="portfolio-link"
+                            >email <span aria-hidden="true">→</span></a
+                        >
+                    </li>
+                </ul>
             </div>
-            <div class="portfolio-intro">
-               <h1>SAFIA <span class="highlight">ABDALLA</span></h1>
-            </div>
-            <div class="portfolio-bio">
-               <p>
-                  I'm a principal software engineer at Microsoft, where I build frameworks and tools to help developers build cloud-scale services. I'm deeply involved in the open source community and believe that sharing software in open and distributed formats is the best way to build interesting things. I also write about what I'm building and how I'm building it on my blog.
-               </p>
-            </div>
-            <div class="portfolio-links">
-               <a href="https://blog.safia.rocks" target="_blank" class="portfolio-link">Blog</a>
-               <a href="https://safia.dev" target="_blank" class="portfolio-link">Projects</a>
-               <a href="https://github.com/captainsafia" target="_blank" class="portfolio-link">GitHub</a>
-               <a href="https://x.com/captainsafia" target="_blank" class="portfolio-link">Twitter/X</a>
-               <a href="https://bsky.app/profile/captainsafia.com" target="_blank" class="portfolio-link">Bluesky</a>
-               <a href="https://www.linkedin.com/in/safiaabdalla/" target="_blank" class="portfolio-link">LinkedIn</a>
-               <a href="mailto:safia@safia.rocks" target="_blank" class="portfolio-link">Email</a>
-            </div>
-         </div>
-      </div>
-   </body>
+        </div>
+        <footer class="site-footer">
+            <p>
+                ©
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+                Safia Abdalla
+            </p>
+        </footer>
+    </body>
 </html>

@@ -1,278 +1,244 @@
-/* CSS Reset */
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600");
-@import url("https://fonts.googleapis.com/css?family=Lora");
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+/* Design System Variables */
+:root {
+    --font-sans:
+        "Source Sans 3", "Source Sans Pro", ui-sans-serif, system-ui, sans-serif;
+    --color-bg: #fff;
+    --color-surface: #f5f5f5;
+    --color-border: #e0e0e0;
+    --color-text: #171717;
+    --color-text-muted: #525252;
+    --color-text-subtle: #737373;
+    --color-accent: #90a959;
 }
 
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #0a0a0a;
+        --color-surface: #111;
+        --color-border: #262626;
+        --color-text: #ededed;
+        --color-text-muted: #a1a1a1;
+        --color-text-subtle: #6b6b6b;
+        --color-accent: #90a959;
+    }
 }
 
-body {
-  line-height: 1;
+/* Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-ol, ul {
-  list-style: none;
+html {
+    scroll-behavior: smooth;
 }
 
-blockquote, q {
-  quotes: none;
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
 }
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/* Typography */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lora:wght@400;500;600&display=swap');
 
 /* Base Styles */
 body {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f5f5f5;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.625;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Portfolio Container */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* Layout */
 .portfolio-container {
-  min-height: 100vh;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-content {
-  background-color: #ffffff;
-  padding: 40px 50px;
-  text-align: center;
-  max-width: 800px;
-  width: 100%;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-sizing: border-box;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    width: 100%;
 }
 
 /* Profile Image */
 .profile-image {
-  margin-bottom: 30px;
+    margin-bottom: 2rem;
 }
 
 .profile-image img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.profile-background-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-image: url("../../images/background.jpg");
-  background-position: center center;
-  background-size: cover;
-  margin: 0 auto;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+@media (prefers-color-scheme: dark) {
+    .profile-image img {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
 }
 
 /* Portfolio Intro */
+.portfolio-intro {
+    margin-bottom: 1.5rem;
+}
+
 .portfolio-intro h1 {
-  font-size: 36px;
-  font-weight: 300;
-  color: #333;
-  margin-bottom: 25px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: -0.025em;
 }
 
 .portfolio-intro .highlight {
-  font-weight: 700;
-  color: rgb(144, 169, 89);
+    font-weight: 600;
+    color: var(--color-text);
 }
 
 /* Portfolio Bio */
 .portfolio-bio {
-  margin-bottom: 20px;
+    margin-bottom: 2.5rem;
 }
 
 .portfolio-bio p {
-  font-family: 'Lora', serif;
-  font-size: 18px;
-  line-height: 1.7;
-  color: #666;
-  max-width: 600px;
-  margin: 0 auto;
-  font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.625;
+    color: var(--color-text-muted);
+    max-width: 540px;
 }
 
 /* Portfolio Links */
 .portfolio-links {
-  margin-top: 25px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  flex-shrink: 1;
-  overflow-x: auto;
-  padding-bottom: 8px;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1.5rem;
+}
+
+.portfolio-links li {
+    margin-bottom: 0.5rem;
+    color: var(--color-text-muted);
+    line-height: 1.625;
+    font-size: 1.125rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.portfolio-links li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--color-text-subtle);
 }
 
 .portfolio-link {
-  color: #666;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  position: relative;
+    color: var(--color-text);
+    transition: color 0.15s;
 }
 
-.portfolio-link:hover {
-  color: rgb(144, 169, 89);
+.portfolio-link:hover,
+.portfolio-link:focus {
+    color: var(--color-accent);
+    outline: none;
 }
 
-.portfolio-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: rgb(144, 169, 89);
-  transition: width 0.3s ease;
+.portfolio-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
-.portfolio-link:hover::after {
-  width: 100%;
+.portfolio-link span {
+    display: inline-block;
+    margin-left: 0.125rem;
+    transition: transform 0.15s;
 }
 
-/* Read More Button */
-.portfolio-cta {
-  margin-top: 20px;
+.portfolio-link:hover span,
+.portfolio-link:focus span {
+    transform: translateX(2px);
 }
 
-.read-more-btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background-color: transparent;
-  color: #666;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border-radius: 0;
-  transition: all 0.3s ease;
-  border: 1px solid #ddd;
+/* Selection */
+::selection {
+    background-color: rgba(144, 169, 89, 0.2);
+    color: var(--color-text);
 }
 
-.read-more-btn:hover {
-  background-color: #f8f8f8;
-  color: #333;
-  border-color: #ccc;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Footer */
+.site-footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2rem;
+    width: 100%;
+}
+
+.site-footer p {
+    font-size: 0.875rem;
+    color: var(--color-text-subtle);
+}
+
+/* Print Styles */
+@media print {
+    .portfolio-content {
+        padding: 2rem 0;
+    }
+
+    .portfolio-links {
+        gap: 1rem;
+    }
+
+    .portfolio-link {
+        color: var(--color-text);
+    }
+
+    .portfolio-link::after {
+        content: " (" attr(href) ")";
+        font-size: 0.75rem;
+        color: var(--color-text-subtle);
+    }
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .portfolio-content {
-    padding: 40px 30px;
-    margin: 15px;
-  }
-  
-  .portfolio-intro h1 {
-    font-size: 28px;
-    letter-spacing: 2px;
-  }
-  
-  .profile-image img,
-  .profile-background-image {
-    width: 160px;
-    height: 160px;
-  }
-  
-  .portfolio-bio p {
-    font-size: 17px;
-  }
-}
+@media (max-width: 640px) {
+    .portfolio-content {
+        padding: 3rem 1.5rem;
+    }
 
-@media (max-width: 480px) {
-  .portfolio-content {
-    padding: 30px 25px;
-    margin: 10px;
-  }
-  
-  .portfolio-intro h1 {
-    font-size: 24px;
-    letter-spacing: 1px;
-  }
-  
-  .profile-image img,
-  .profile-background-image {
-    width: 140px;
-    height: 140px;
-  }
-  
-  .portfolio-bio p {
-    font-size: 16px;
-  }
-  
-  .read-more-btn {
-    padding: 10px 25px;
-    font-size: 11px;
-  }
-  
-  .portfolio-links {
-    gap: 16px;
-    margin-top: 18px;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow-x: auto;
-    padding-bottom: 8px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-  }
-  .portfolio-link {
-    font-size: 13px;
-    white-space: nowrap;
-  }
+    .portfolio-intro h1 {
+        font-size: 1.5rem;
+    }
+
+    .portfolio-bio p {
+        font-size: 1rem;
+    }
+
+    .portfolio-links {
+        gap: 1rem;
+    }
 }
