@@ -23,6 +23,25 @@
     }
 }
 
+/* Manual theme override */
+:root[data-theme="light"] {
+    --color-bg: #fff;
+    --color-surface: #f5f5f5;
+    --color-border: #e0e0e0;
+    --color-text: #171717;
+    --color-text-muted: #525252;
+    --color-text-subtle: #737373;
+}
+
+:root[data-theme="dark"] {
+    --color-bg: #0a0a0a;
+    --color-surface: #111;
+    --color-border: #262626;
+    --color-text: #ededed;
+    --color-text-muted: #a1a1a1;
+    --color-text-subtle: #6b6b6b;
+}
+
 /* Reset */
 *,
 *::before,
@@ -103,6 +122,84 @@ a:hover {
     .profile-image img {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
+}
+
+:root[data-theme="dark"] .profile-image img {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="light"] .profile-image img {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background-color: var(--color-surface);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s, border-color 0.15s;
+    z-index: 100;
+}
+
+.theme-toggle:hover {
+    background-color: var(--color-border);
+}
+
+.theme-toggle:focus {
+    outline: none;
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-text);
+}
+
+.theme-toggle .icon-sun {
+    display: none;
+}
+
+.theme-toggle .icon-moon {
+    display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+    .theme-toggle .icon-sun {
+        display: block;
+    }
+    .theme-toggle .icon-moon {
+        display: none;
+    }
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+    display: block;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+    display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-sun {
+    display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-moon {
+    display: block;
 }
 
 /* Portfolio Intro */
