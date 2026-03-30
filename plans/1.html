@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Hal Higdon Novice 10K</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0d0f;
+  --card: #1a1a1f;
+  --border: #2a2a32;
+  --accent: #e8ff47;
+  --accent2: #ff6b35;
+  --text: #f0f0f0;
+  --muted: #666;
+  --run: #e8ff47;
+  --cross: #47c8ff;
+  --strength: #ff9b47;
+  --rest: #3a3a3a;
+  --race: #ff6b35;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  padding-bottom: max(32px, env(safe-area-inset-bottom));
+}
+
+/* ── Header ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  padding-top: max(10px, env(safe-area-inset-top));
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.logo span { color: var(--accent); }
+
+.progress-bar-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.progress-labels strong { color: var(--accent); font-weight: 600; }
+.progress-track {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.reset-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.reset-btn:active { border-color: var(--accent2); color: var(--accent2); }
+
+/* ── Hero ── */
+.hero { padding: 24px 16px 12px; }
+.hero-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.6rem, 14vw, 5rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+}
+.hero h1 em { color: var(--accent); font-style: normal; display: block; }
+
+.hero-meta {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+}
+.meta-item { display: flex; flex-direction: column; gap: 2px; }
+.meta-label { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.meta-value { font-size: 0.85rem; font-weight: 500; }
+
+/* ── Legend ── */
+.legend {
+  padding: 14px 16px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── Weeks ── */
+.weeks { padding: 8px 16px 0; display: flex; flex-direction: column; }
+.week-section { margin-bottom: 4px; }
+
+.week-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 0 8px;
+}
+.week-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.week-title { font-size: 0.75rem; font-weight: 500; white-space: nowrap; }
+.week-rule { flex: 1; height: 1px; background: var(--border); min-width: 12px; }
+.week-badge {
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(232,255,71,0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: none;
+  white-space: nowrap;
+}
+.week-badge.visible { display: block; }
+
+/* ── Day rows ── */
+.days-list { display: flex; flex-direction: column; gap: 3px; }
+
+.day-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  min-height: 60px;
+  transition: opacity 0.12s;
+}
+.day-row::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--tc, var(--border));
+  border-radius: 4px 0 0 4px;
+}
+.day-row:active { opacity: 0.65; }
+.day-row.done {
+  background: rgba(232,255,71,0.03);
+  border-color: rgba(232,255,71,0.1);
+  opacity: 0.58;
+}
+.day-row.today { border-color: var(--accent2); box-shadow: 0 0 0 1px var(--accent2); }
+.day-row.past:not(.done) { opacity: 0.35; }
+.day-row.is-rest { cursor: default; opacity: 0.25; min-height: 46px; }
+.day-row.is-race { background: linear-gradient(135deg,#1f0f08,#1a1410); border-color: var(--accent2); }
+
+/* Stamp */
+.stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36px;
+  flex-shrink: 0;
+}
+.stamp-day {
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1;
+}
+.stamp-date {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+.day-row.today .stamp-date { color: var(--accent2); }
+
+.vline { width: 1px; height: 26px; background: var(--border); flex-shrink: 0; }
+
+/* Info */
+.info { flex: 1; min-width: 0; }
+.workout-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.day-row.is-race .workout-name { color: var(--accent2); font-size: 1rem; }
+.workout-type {
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tc, var(--muted));
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+/* Check */
+.check-circle {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, border-color 0.18s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.check-circle svg {
+  width: 13px; height: 13px;
+  stroke: #0d0d0f;
+  stroke-width: 2.5;
+  fill: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.day-row.done .check-circle {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.1);
+}
+.day-row.done .check-circle svg { opacity: 1; }
+
+/* Today label */
+.today-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.today-label::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent2);
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">10K <span>Novice</span></div>
+  <div class="progress-bar-wrap">
+    <div class="progress-labels">
+      <span id="done-count">0 of 0 done</span>
+      <strong id="pct">0%</strong>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="fill" style="width:0%"></div>
+    </div>
+  </div>
+  <button class="reset-btn" onclick="resetAll()">Reset</button>
+</header>
+
+<div class="hero">
+  <div class="hero-sub">Hal Higdon</div>
+  <h1>Train to <em>Race 10K</em></h1>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Starts</span>
+      <span class="meta-value">Sun, Mar 29</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Race Day</span>
+      <span class="meta-value">~Sat, May 24</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Plan</span>
+      <span class="meta-value">8 Weeks + Warm-up</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">How to use</span>
+      <span class="meta-value">Tap to check off</span>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--run)"></div>Run</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cross)"></div>Cross</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--strength)"></div>Strength</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--rest)"></div>Rest</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--race)"></div>Race</div>
+  </div>
+</div>
+
+<div class="weeks" id="weeks"></div>
+
+<script>
+const TODAY = new Date(2026, 2, 28);
+const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function addDays(d, n) { const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function sameDay(a,b) { return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate(); }
+function key(d) { return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`; }
+function mk(date,workout,type) { return {date,workout,type}; }
+
+const W = new Date(2026,2,30);
+
+const WEEKS = [
+  {label:'Warm-Up', sub:'Get the legs going', days:[
+    mk(new Date(2026,2,29),'30 min cross','cross'),
+  ]},
+  {label:'Week 1', sub:'Build the base', days:[
+    mk(addDays(W,0),'Stretch & Strengthen','strength'),
+    mk(addDays(W,1),'2.5 mi run','run'),
+    mk(addDays(W,2),'30 min cross','cross'),
+    mk(addDays(W,3),'2 mi run','run'),
+    mk(addDays(W,4),'Stretch & Strengthen','strength'),
+    mk(addDays(W,5),'40 min cross','cross'),
+    mk(addDays(W,6),'3 mi run','run'),
+  ]},
+  {label:'Week 2', sub:'Add a half-mile', days:[
+    mk(addDays(W,7),'Stretch & Strengthen','strength'),
+    mk(addDays(W,8),'2.5 mi run','run'),
+    mk(addDays(W,9),'30 min cross','cross'),
+    mk(addDays(W,10),'2 mi run','run'),
+    mk(addDays(W,11),'Stretch & Strengthen','strength'),
+    mk(addDays(W,12),'40 min cross','cross'),
+    mk(addDays(W,13),'3.5 mi run','run'),
+  ]},
+  {label:'Week 3', sub:'Longer cross days', days:[
+    mk(addDays(W,14),'Stretch & Strengthen','strength'),
+    mk(addDays(W,15),'2.5 mi run','run'),
+    mk(addDays(W,16),'35 min cross','cross'),
+    mk(addDays(W,17),'2 mi run','run'),
+    mk(addDays(W,18),'Stretch & Strengthen','strength'),
+    mk(addDays(W,19),'50 min cross','cross'),
+    mk(addDays(W,20),'4 mi run','run'),
+  ]},
+  {label:'Week 4', sub:'Tuesday steps up', days:[
+    mk(addDays(W,21),'Stretch & Strengthen','strength'),
+    mk(addDays(W,22),'3 mi run','run'),
+    mk(addDays(W,23),'35 min cross','cross'),
+    mk(addDays(W,24),'2 mi run','run'),
+    mk(addDays(W,25),'Stretch & Strengthen','strength'),
+    mk(addDays(W,26),'50 min cross','cross'),
+    mk(addDays(W,27),'4 mi run','run'),
+  ]},
+  {label:'Week 5', sub:'Cross hits an hour', days:[
+    mk(addDays(W,28),'Stretch & Strengthen','strength'),
+    mk(addDays(W,29),'3 mi run','run'),
+    mk(addDays(W,30),'40 min cross','cross'),
+    mk(addDays(W,31),'2 mi run','run'),
+    mk(addDays(W,32),'Stretch & Strengthen','strength'),
+    mk(addDays(W,33),'60 min cross','cross'),
+    mk(addDays(W,34),'4.5 mi run','run'),
+  ]},
+  {label:'Week 6', sub:'Five miles Sunday', days:[
+    mk(addDays(W,35),'Stretch & Strengthen','strength'),
+    mk(addDays(W,36),'3 mi run','run'),
+    mk(addDays(W,37),'40 min cross','cross'),
+    mk(addDays(W,38),'2 mi run','run'),
+    mk(addDays(W,39),'Stretch & Strengthen','strength'),
+    mk(addDays(W,40),'60 min cross','cross'),
+    mk(addDays(W,41),'5 mi run','run'),
+  ]},
+  {label:'Week 7', sub:'Peak long run', days:[
+    mk(addDays(W,42),'Stretch & Strengthen','strength'),
+    mk(addDays(W,43),'3 mi run','run'),
+    mk(addDays(W,44),'45 min cross','cross'),
+    mk(addDays(W,45),'2 mi run','run'),
+    mk(addDays(W,46),'Stretch & Strengthen','strength'),
+    mk(addDays(W,47),'60 min cross','cross'),
+    mk(addDays(W,48),'5.5 mi run','run'),
+  ]},
+  {label:'Week 8', sub:'Taper & Race!', days:[
+    mk(addDays(W,49),'Stretch & Strengthen','strength'),
+    mk(addDays(W,50),'3 mi run','run'),
+    mk(addDays(W,51),'30 min cross','cross'),
+    mk(addDays(W,52),'2 mi run','run'),
+    mk(addDays(W,53),'Rest','rest'),
+    mk(addDays(W,54),'Rest','rest'),
+    mk(addDays(W,55),'🏁 10K Race!','race'),
+  ]},
+];
+
+const TC = {run:'var(--run)',cross:'var(--cross)',strength:'var(--strength)',rest:'var(--rest)',race:'var(--race)'};
+const TL = {run:'Run',cross:'Cross-train',strength:'Strength',rest:'Rest',race:'Race Day'};
+
+function load() { try{return JSON.parse(localStorage.getItem('hh10k')||'{}')}catch{return{}} }
+function save(s){ localStorage.setItem('hh10k',JSON.stringify(s)) }
+
+function render() {
+  const state = load();
+  const container = document.getElementById('weeks');
+  container.innerHTML = '';
+  let total=0, done=0;
+
+  WEEKS.forEach(week => {
+    const sec = document.createElement('div');
+    sec.className = 'week-section';
+
+    const hdr = document.createElement('div');
+    hdr.className = 'week-header';
+    const num = document.createElement('span'); num.className='week-num'; num.textContent=week.label.toUpperCase();
+    const sub = document.createElement('span'); sub.className='week-title'; sub.textContent=week.sub;
+    const rule = document.createElement('div'); rule.className='week-rule';
+    const badge = document.createElement('span'); badge.className='week-badge'; badge.textContent='✓ Done';
+    hdr.append(num,sub,rule,badge);
+    sec.appendChild(hdr);
+
+    const list = document.createElement('div');
+    list.className = 'days-list';
+    let wt=0,wd=0;
+
+    week.days.forEach(day => {
+      const k = key(day.date);
+      const isDone = !!state[k];
+      const isToday = sameDay(day.date,TODAY);
+      const isPast = day.date < TODAY && !isToday;
+      const isRest = day.type==='rest';
+      const isRace = day.type==='race';
+
+      if (!isRest){ wt++; total++; if(isDone){wd++;done++;} }
+
+      const row = document.createElement('div');
+      let cls='day-row';
+      if(isDone) cls+=' done';
+      if(isToday) cls+=' today';
+      if(isPast&&!isDone) cls+=' past';
+      if(isRest) cls+=' is-rest';
+      if(isRace) cls+=' is-race';
+      row.className=cls;
+      row.style.setProperty('--tc', TC[day.type]);
+
+      // Stamp
+      const stamp = document.createElement('div');
+      stamp.className='stamp';
+      const sd=document.createElement('div'); sd.className='stamp-day';
+      if(isToday){ const tl=document.createElement('span'); tl.className='today-label'; tl.textContent='Today'; sd.appendChild(tl); }
+      else { sd.textContent=DAY_NAMES[day.date.getDay()]; }
+      const sn=document.createElement('div'); sn.className='stamp-date'; sn.textContent=day.date.getDate();
+      stamp.append(sd,sn);
+
+      const vl=document.createElement('div'); vl.className='vline';
+
+      const info=document.createElement('div'); info.className='info';
+      const wn=document.createElement('div'); wn.className='workout-name'; wn.textContent=day.workout;
+      const wt2=document.createElement('div'); wt2.className='workout-type'; wt2.textContent=TL[day.type];
+      info.append(wn,wt2);
+
+      row.append(stamp,vl,info);
+
+      if(!isRest){
+        const cc=document.createElement('div'); cc.className='check-circle';
+        cc.innerHTML=`<svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>`;
+        row.appendChild(cc);
+        row.addEventListener('click',()=>{
+          const s=load();
+          if(s[k]) delete s[k]; else s[k]=true;
+          save(s); render();
+        });
+      }
+
+      list.appendChild(row);
+    });
+
+    if(wt>0&&wd===wt) badge.classList.add('visible');
+    sec.appendChild(list);
+    container.appendChild(sec);
+  });
+
+  const pct = total>0?Math.round((done/total)*100):0;
+  document.getElementById('pct').textContent=pct+'%';
+  document.getElementById('fill').style.width=pct+'%';
+  document.getElementById('done-count').textContent=`${done} of ${total} done`;
+}
+
+function resetAll(){
+  if(confirm('Reset all progress?')){ localStorage.removeItem('hh10k'); render(); }
+}
+
+render();
+</script>
+</body>
+</html>
