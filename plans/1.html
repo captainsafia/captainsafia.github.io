@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Hal Higdon Novice 10K</title>
+<title>Training Plan</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,6 +18,7 @@
   --muted: #666;
   --run: #e8ff47;
   --cross: #47c8ff;
+  --tempo: #c084fc;
   --strength: #ff9b47;
   --rest: #3a3a3a;
   --race: #ff6b35;
@@ -28,7 +29,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 300;
   min-height: 100vh;
   padding-bottom: max(32px, env(safe-area-inset-bottom));
@@ -47,7 +48,6 @@ header {
   align-items: center;
   gap: 12px;
 }
-
 .logo {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.4rem;
@@ -74,19 +74,13 @@ header {
   color: var(--muted);
 }
 .progress-labels strong { color: var(--accent); font-weight: 600; }
-.progress-track {
-  height: 3px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
+.progress-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--accent), var(--accent2));
   border-radius: 2px;
   transition: width 0.4s ease;
 }
-
 .reset-btn {
   flex-shrink: 0;
   background: none;
@@ -106,13 +100,7 @@ header {
 
 /* ── Hero ── */
 .hero { padding: 24px 16px 12px; }
-.hero-sub {
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
+.hero-sub { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .hero h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2.6rem, 14vw, 5rem);
@@ -120,12 +108,11 @@ header {
   letter-spacing: 0.02em;
 }
 .hero h1 em { color: var(--accent); font-style: normal; display: block; }
-
 .hero-meta {
   margin-top: 14px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
 }
 .meta-item { display: flex; flex-direction: column; gap: 2px; }
 .meta-label { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
@@ -133,53 +120,48 @@ header {
 
 /* ── Legend ── */
 .legend {
-  padding: 14px 16px 0;
+  padding: 14px 0 0;
   display: flex;
   flex-wrap: wrap;
   gap: 10px 18px;
   border-top: 1px solid var(--border);
   margin-top: 16px;
 }
-.legend-item {
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── Phase banner ── */
+.phase-banner {
+  margin: 20px 0 0;
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--phase-color, var(--accent));
+  border-radius: 8px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.65rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
+  gap: 10px;
 }
-.legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.phase-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: var(--phase-color, var(--accent));
+}
+.phase-desc { font-size: 0.75rem; color: var(--muted); }
 
 /* ── Weeks ── */
 .weeks { padding: 8px 16px 0; display: flex; flex-direction: column; }
 .week-section { margin-bottom: 4px; }
 
-.week-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 18px 0 8px;
-}
-.week-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.2em;
-  color: var(--muted);
-  white-space: nowrap;
-}
+.week-header { display: flex; align-items: center; gap: 10px; padding: 16px 0 8px; }
+.week-num { font-family: 'Bebas Neue', sans-serif; font-size: 0.78rem; letter-spacing: 0.2em; color: var(--muted); white-space: nowrap; }
 .week-title { font-size: 0.75rem; font-weight: 500; white-space: nowrap; }
 .week-rule { flex: 1; height: 1px; background: var(--border); min-width: 12px; }
 .week-badge {
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: rgba(232,255,71,0.1);
-  padding: 4px 10px;
-  border-radius: 20px;
-  display: none;
-  white-space: nowrap;
+  font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); background: rgba(232,255,71,0.1);
+  padding: 4px 10px; border-radius: 20px; display: none; white-space: nowrap;
 }
 .week-badge.visible { display: block; }
 
@@ -212,108 +194,45 @@ header {
   border-radius: 4px 0 0 4px;
 }
 .day-row:active { opacity: 0.65; }
-.day-row.done {
-  background: rgba(232,255,71,0.03);
-  border-color: rgba(232,255,71,0.1);
-  opacity: 0.58;
-}
+.day-row.done { background: rgba(232,255,71,0.03); border-color: rgba(232,255,71,0.1); opacity: 0.58; }
 .day-row.today { border-color: var(--accent2); box-shadow: 0 0 0 1px var(--accent2); }
 .day-row.past:not(.done) { opacity: 0.35; }
 .day-row.is-rest { cursor: default; opacity: 0.25; min-height: 46px; }
 .day-row.is-race { background: linear-gradient(135deg,#1f0f08,#1a1410); border-color: var(--accent2); }
 
-/* Stamp */
-.stamp {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 36px;
-  flex-shrink: 0;
-}
-.stamp-day {
-  font-size: 0.55rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  line-height: 1;
-}
-.stamp-date {
-  font-size: 1.15rem;
-  font-weight: 600;
-  line-height: 1.1;
-}
+.stamp { display: flex; flex-direction: column; align-items: center; width: 42px; flex-shrink: 0; }
+.stamp-day { font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); line-height: 1; }
+.stamp-date { font-size: 1rem; font-weight: 600; line-height: 1.2; text-align: center; }
+.stamp-month { font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); line-height: 1; }
 .day-row.today .stamp-date { color: var(--accent2); }
 
 .vline { width: 1px; height: 26px; background: var(--border); flex-shrink: 0; }
 
-/* Info */
 .info { flex: 1; min-width: 0; }
-.workout-name {
-  font-size: 0.95rem;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+.workout-name { font-size: 0.95rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .day-row.is-race .workout-name { color: var(--accent2); font-size: 1rem; }
-.workout-type {
-  font-size: 0.56rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--tc, var(--muted));
-  opacity: 0.6;
-  margin-top: 2px;
-}
+.workout-type { font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tc, var(--muted)); opacity: 0.6; margin-top: 2px; }
 
-/* Check */
 .check-circle {
   flex-shrink: 0;
   width: 28px; height: 28px;
   border-radius: 50%;
   border: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   transition: background 0.18s, border-color 0.18s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
 }
-.check-circle svg {
-  width: 13px; height: 13px;
-  stroke: #0d0d0f;
-  stroke-width: 2.5;
-  fill: none;
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-.day-row.done .check-circle {
-  background: var(--accent);
-  border-color: var(--accent);
-  transform: scale(1.1);
-}
+.check-circle svg { width: 13px; height: 13px; stroke: #0d0d0f; stroke-width: 2.5; fill: none; opacity: 0; transition: opacity 0.15s; }
+.day-row.done .check-circle { background: var(--accent); border-color: var(--accent); transform: scale(1.1); }
 .day-row.done .check-circle svg { opacity: 1; }
 
-/* Today label */
-.today-label {
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent2);
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-.today-label::before {
-  content: '';
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--accent2);
-  display: inline-block;
-}
+.today-label { font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); display: flex; align-items: center; gap: 3px; }
+.today-label::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent2); display: inline-block; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">10K <span>Novice</span></div>
+  <div class="logo">Training <span>Plan</span></div>
   <div class="progress-bar-wrap">
     <div class="progress-labels">
       <span id="done-count">0 of 0 done</span>
@@ -326,30 +245,16 @@ header {
   <button class="reset-btn" onclick="resetAll()">Reset</button>
 </header>
 
-<div class="hero">
-  <div class="hero-sub">Hal Higdon</div>
-  <h1>Train to <em>Race 10K</em></h1>
+<div class="hero" style="padding: 24px 16px 12px;">
   <div class="hero-meta">
-    <div class="meta-item">
-      <span class="meta-label">Starts</span>
-      <span class="meta-value">Sun, Mar 29</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Race Day</span>
-      <span class="meta-value">~Sat, May 24</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Plan</span>
-      <span class="meta-value">8 Weeks + Warm-up</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">How to use</span>
-      <span class="meta-value">Tap to check off</span>
-    </div>
+    <div class="meta-item"><span class="meta-label">Starts</span><span class="meta-value">Sun, Mar 29</span></div>
+    <div class="meta-item"><span class="meta-label">Race Day</span><span class="meta-value">Sun, Oct 4</span></div>
+    <div class="meta-item"><span class="meta-label">Plan</span><span class="meta-value">27 Weeks</span></div>
   </div>
   <div class="legend">
     <div class="legend-item"><div class="legend-dot" style="background:var(--run)"></div>Run</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--cross)"></div>Cross</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--tempo)"></div>Tempo</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--strength)"></div>Strength</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--rest)"></div>Rest</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--race)"></div>Race</div>
@@ -359,169 +264,366 @@ header {
 <div class="weeks" id="weeks"></div>
 
 <script>
-const TODAY = new Date(2026, 2, 28);
+const TODAY = new Date();
+
 const DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-function addDays(d, n) { const r=new Date(d); r.setDate(r.getDate()+n); return r; }
-function sameDay(a,b) { return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate(); }
+function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
+function sameDay(a, b) { return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
 function key(d) { return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`; }
-function mk(date,workout,type) { return {date,workout,type}; }
+function mk(date, workout, type) { return { date, workout, type }; }
 
-const W = new Date(2026,2,30);
+const W = new Date(2026, 2, 30);
+
+const PHASES = [
+  { start:1,  end:4,  label:'Phase 1', color:'var(--cross)',   desc:'Base Building — establish the rhythm' },
+  { start:5,  end:10, label:'Phase 2', color:'var(--tempo)',   desc:'Build 1 — Wednesday tempos introduced' },
+  { start:11, end:16, label:'Phase 3', color:'var(--tempo)',   desc:'Build 2 — tempo Wednesdays, CrossFit Saturdays' },
+  { start:17, end:22, label:'Phase 4', color:'var(--run)',     desc:'Peak — maximum mileage & speed' },
+  { start:23, end:26, label:'Phase 5', color:'var(--accent2)', desc:'Taper — back off, stay sharp' },
+  { start:27, end:27, label:'Race Week', color:'var(--race)',  desc:'Rest up. Go get it.' },
+];
+
+function w(n) { return addDays(W, (n-1)*7); }
 
 const WEEKS = [
-  {label:'Warm-Up', sub:'Get the legs going', days:[
-    mk(new Date(2026,2,29),'30 min cross','cross'),
+  { label:'Warm-Up', sub:'Get moving', phase:0, days:[
+    mk(new Date(2026,2,29), '30 min cross', 'cross'),
   ]},
-  {label:'Week 1', sub:'Build the base', days:[
-    mk(addDays(W,0),'Stretch & Strengthen','strength'),
-    mk(addDays(W,1),'2.5 mi run','run'),
-    mk(addDays(W,2),'30 min cross','cross'),
-    mk(addDays(W,3),'2 mi run','run'),
-    mk(addDays(W,4),'Stretch & Strengthen','strength'),
-    mk(addDays(W,5),'40 min cross','cross'),
-    mk(addDays(W,6),'3 mi run','run'),
+  { label:'Week 1', sub:'Base building', phase:1, days:[
+    mk(addDays(w(1),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(1),1), '2.5 mi run',           'run'),
+    mk(addDays(w(1),2), '30 min cross',          'cross'),
+    mk(addDays(w(1),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(1),4), '2 mi run',              'run'),
+    mk(addDays(w(1),5), 'Cross-training',        'cross'),
+    mk(addDays(w(1),6), '3 mi run',              'run'),
   ]},
-  {label:'Week 2', sub:'Add a half-mile', days:[
-    mk(addDays(W,7),'Stretch & Strengthen','strength'),
-    mk(addDays(W,8),'2.5 mi run','run'),
-    mk(addDays(W,9),'30 min cross','cross'),
-    mk(addDays(W,10),'2 mi run','run'),
-    mk(addDays(W,11),'Stretch & Strengthen','strength'),
-    mk(addDays(W,12),'40 min cross','cross'),
-    mk(addDays(W,13),'3.5 mi run','run'),
+  { label:'Week 2', sub:'Base building', phase:1, days:[
+    mk(addDays(w(2),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(2),1), '2.5 mi run',           'run'),
+    mk(addDays(w(2),2), '30 min cross',          'cross'),
+    mk(addDays(w(2),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(2),4), '2 mi run',              'run'),
+    mk(addDays(w(2),5), 'Cross-training',        'cross'),
+    mk(addDays(w(2),6), '3.5 mi run',            'run'),
   ]},
-  {label:'Week 3', sub:'Longer cross days', days:[
-    mk(addDays(W,14),'Stretch & Strengthen','strength'),
-    mk(addDays(W,15),'2.5 mi run','run'),
-    mk(addDays(W,16),'35 min cross','cross'),
-    mk(addDays(W,17),'2 mi run','run'),
-    mk(addDays(W,18),'Stretch & Strengthen','strength'),
-    mk(addDays(W,19),'50 min cross','cross'),
-    mk(addDays(W,20),'4 mi run','run'),
+  { label:'Week 3', sub:'Base building', phase:1, days:[
+    mk(addDays(w(3),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(3),1), '2.5 mi run',           'run'),
+    mk(addDays(w(3),2), '35 min cross',          'cross'),
+    mk(addDays(w(3),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(3),4), '2 mi run',              'run'),
+    mk(addDays(w(3),5), 'Cross-training',        'cross'),
+    mk(addDays(w(3),6), '4 mi run',              'run'),
   ]},
-  {label:'Week 4', sub:'Tuesday steps up', days:[
-    mk(addDays(W,21),'Stretch & Strengthen','strength'),
-    mk(addDays(W,22),'3 mi run','run'),
-    mk(addDays(W,23),'35 min cross','cross'),
-    mk(addDays(W,24),'2 mi run','run'),
-    mk(addDays(W,25),'Stretch & Strengthen','strength'),
-    mk(addDays(W,26),'50 min cross','cross'),
-    mk(addDays(W,27),'4 mi run','run'),
+  { label:'Week 4', sub:'Base building', phase:1, days:[
+    mk(addDays(w(4),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(4),1), '3 mi run',             'run'),
+    mk(addDays(w(4),2), '35 min cross',          'cross'),
+    mk(addDays(w(4),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(4),4), '2 mi run',              'run'),
+    mk(addDays(w(4),5), 'Cross-training',        'cross'),
+    mk(addDays(w(4),6), '4 mi run',              'run'),
   ]},
-  {label:'Week 5', sub:'Cross hits an hour', days:[
-    mk(addDays(W,28),'Stretch & Strengthen','strength'),
-    mk(addDays(W,29),'3 mi run','run'),
-    mk(addDays(W,30),'40 min cross','cross'),
-    mk(addDays(W,31),'2 mi run','run'),
-    mk(addDays(W,32),'Stretch & Strengthen','strength'),
-    mk(addDays(W,33),'60 min cross','cross'),
-    mk(addDays(W,34),'4.5 mi run','run'),
+  { label:'Week 5', sub:'Intro to tempo', phase:2, days:[
+    mk(addDays(w(5),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(5),1), '3 mi run',             'run'),
+    mk(addDays(w(5),2), '20 min tempo',         'tempo'),
+    mk(addDays(w(5),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(5),4), '2.5 mi run',            'run'),
+    mk(addDays(w(5),5), 'Cross-training',        'cross'),
+    mk(addDays(w(5),6), '4.5 mi run',            'run'),
   ]},
-  {label:'Week 6', sub:'Five miles Sunday', days:[
-    mk(addDays(W,35),'Stretch & Strengthen','strength'),
-    mk(addDays(W,36),'3 mi run','run'),
-    mk(addDays(W,37),'40 min cross','cross'),
-    mk(addDays(W,38),'2 mi run','run'),
-    mk(addDays(W,39),'Stretch & Strengthen','strength'),
-    mk(addDays(W,40),'60 min cross','cross'),
-    mk(addDays(W,41),'5 mi run','run'),
+  { label:'Week 6', sub:'Tempo Wednesdays', phase:2, days:[
+    mk(addDays(w(6),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(6),1), '3 mi run',             'run'),
+    mk(addDays(w(6),2), '20 min tempo',         'tempo'),
+    mk(addDays(w(6),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(6),4), '2.5 mi run',            'run'),
+    mk(addDays(w(6),5), 'Cross-training',        'cross'),
+    mk(addDays(w(6),6), '5 mi run',              'run'),
   ]},
-  {label:'Week 7', sub:'Peak long run', days:[
-    mk(addDays(W,42),'Stretch & Strengthen','strength'),
-    mk(addDays(W,43),'3 mi run','run'),
-    mk(addDays(W,44),'45 min cross','cross'),
-    mk(addDays(W,45),'2 mi run','run'),
-    mk(addDays(W,46),'Stretch & Strengthen','strength'),
-    mk(addDays(W,47),'60 min cross','cross'),
-    mk(addDays(W,48),'5.5 mi run','run'),
+  { label:'Week 7', sub:'Tempo Wednesdays', phase:2, days:[
+    mk(addDays(w(7),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(7),1), '3 mi run',             'run'),
+    mk(addDays(w(7),2), '25 min tempo',         'tempo'),
+    mk(addDays(w(7),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(7),4), '2.5 mi run',            'run'),
+    mk(addDays(w(7),5), 'Cross-training',        'cross'),
+    mk(addDays(w(7),6), '5 mi run',              'run'),
   ]},
-  {label:'Week 8', sub:'Taper & Race!', days:[
-    mk(addDays(W,49),'Stretch & Strengthen','strength'),
-    mk(addDays(W,50),'3 mi run','run'),
-    mk(addDays(W,51),'30 min cross','cross'),
-    mk(addDays(W,52),'2 mi run','run'),
-    mk(addDays(W,53),'Rest','rest'),
-    mk(addDays(W,54),'Rest','rest'),
-    mk(addDays(W,55),'🏁 10K Race!','race'),
+  { label:'Week 8', sub:'Tempo Wednesdays', phase:2, days:[
+    mk(addDays(w(8),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(8),1), '3 mi run',             'run'),
+    mk(addDays(w(8),2), '25 min tempo',         'tempo'),
+    mk(addDays(w(8),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(8),4), '2.5 mi run',            'run'),
+    mk(addDays(w(8),5), 'Cross-training',        'cross'),
+    mk(addDays(w(8),6), '5.5 mi run',            'run'),
+  ]},
+  { label:'Week 9', sub:'Tempo Wednesdays', phase:2, days:[
+    mk(addDays(w(9),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(9),1), '3 mi run',             'run'),
+    mk(addDays(w(9),2), '25 min tempo',         'tempo'),
+    mk(addDays(w(9),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(9),4), '3 mi run',              'run'),
+    mk(addDays(w(9),5), 'Cross-training',        'cross'),
+    mk(addDays(w(9),6), '5.5 mi run',            'run'),
+  ]},
+  { label:'Week 10', sub:'Tempo Wednesdays', phase:2, days:[
+    mk(addDays(w(10),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(10),1), '3 mi run',             'run'),
+    mk(addDays(w(10),2), '30 min tempo',         'tempo'),
+    mk(addDays(w(10),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(10),4), '3 mi run',              'run'),
+    mk(addDays(w(10),5), 'Cross-training',        'cross'),
+    mk(addDays(w(10),6), '6 mi run',              'run'),
+  ]},
+  { label:'Week 11', sub:'Building speed', phase:3, days:[
+    mk(addDays(w(11),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(11),1), '3 mi run',             'run'),
+    mk(addDays(w(11),2), '30 min tempo',         'tempo'),
+    mk(addDays(w(11),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(11),4), '3 mi run',              'run'),
+    mk(addDays(w(11),5), 'Cross-training',        'cross'),
+    mk(addDays(w(11),6), '6 mi run',              'run'),
+  ]},
+  { label:'Week 12', sub:'Building speed', phase:3, days:[
+    mk(addDays(w(12),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(12),1), '3.5 mi run',           'run'),
+    mk(addDays(w(12),2), '30 min tempo',         'tempo'),
+    mk(addDays(w(12),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(12),4), '3 mi run',              'run'),
+    mk(addDays(w(12),5), 'Cross-training',        'cross'),
+    mk(addDays(w(12),6), '6.5 mi run',            'run'),
+  ]},
+  { label:'Week 13', sub:'Building speed', phase:3, days:[
+    mk(addDays(w(13),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(13),1), '3.5 mi run',           'run'),
+    mk(addDays(w(13),2), '30 min tempo',         'tempo'),
+    mk(addDays(w(13),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(13),4), '3 mi run',              'run'),
+    mk(addDays(w(13),5), 'Cross-training',        'cross'),
+    mk(addDays(w(13),6), '6.5 mi run',            'run'),
+  ]},
+  { label:'Week 14', sub:'Building speed', phase:3, days:[
+    mk(addDays(w(14),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(14),1), '3.5 mi run',           'run'),
+    mk(addDays(w(14),2), '35 min tempo',         'tempo'),
+    mk(addDays(w(14),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(14),4), '3 mi run',              'run'),
+    mk(addDays(w(14),5), 'Cross-training',        'cross'),
+    mk(addDays(w(14),6), '7 mi run',              'run'),
+  ]},
+  { label:'Week 15', sub:'Building speed', phase:3, days:[
+    mk(addDays(w(15),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(15),1), '3.5 mi run',           'run'),
+    mk(addDays(w(15),2), '35 min tempo',         'tempo'),
+    mk(addDays(w(15),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(15),4), '3.5 mi run',            'run'),
+    mk(addDays(w(15),5), 'Cross-training',        'cross'),
+    mk(addDays(w(15),6), '7 mi run',              'run'),
+  ]},
+  { label:'Week 16', sub:'Building speed', phase:3, days:[
+    mk(addDays(w(16),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(16),1), '4 mi run',             'run'),
+    mk(addDays(w(16),2), '35 min tempo',         'tempo'),
+    mk(addDays(w(16),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(16),4), '3.5 mi run',            'run'),
+    mk(addDays(w(16),5), 'Cross-training',        'cross'),
+    mk(addDays(w(16),6), '7.5 mi run',            'run'),
+  ]},
+  { label:'Week 17', sub:'Peak phase', phase:4, days:[
+    mk(addDays(w(17),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(17),1), '4 mi run',             'run'),
+    mk(addDays(w(17),2), '35 min tempo',         'tempo'),
+    mk(addDays(w(17),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(17),4), '3.5 mi run',            'run'),
+    mk(addDays(w(17),5), 'Cross-training',        'cross'),
+    mk(addDays(w(17),6), '7.5 mi run',            'run'),
+  ]},
+  { label:'Week 18', sub:'Peak phase', phase:4, days:[
+    mk(addDays(w(18),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(18),1), '4 mi run',             'run'),
+    mk(addDays(w(18),2), '35 min tempo',         'tempo'),
+    mk(addDays(w(18),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(18),4), '3.5 mi run',            'run'),
+    mk(addDays(w(18),5), 'Cross-training',        'cross'),
+    mk(addDays(w(18),6), '8 mi run',              'run'),
+  ]},
+  { label:'Week 19', sub:'Peak phase', phase:4, days:[
+    mk(addDays(w(19),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(19),1), '4 mi run',             'run'),
+    mk(addDays(w(19),2), '40 min tempo',         'tempo'),
+    mk(addDays(w(19),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(19),4), '4 mi run',              'run'),
+    mk(addDays(w(19),5), 'Cross-training',        'cross'),
+    mk(addDays(w(19),6), '8 mi run',              'run'),
+  ]},
+  { label:'Week 20', sub:'Peak phase', phase:4, days:[
+    mk(addDays(w(20),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(20),1), '4 mi run',             'run'),
+    mk(addDays(w(20),2), '40 min tempo',         'tempo'),
+    mk(addDays(w(20),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(20),4), '4 mi run',              'run'),
+    mk(addDays(w(20),5), 'Cross-training',        'cross'),
+    mk(addDays(w(20),6), '8 mi run',              'run'),
+  ]},
+  { label:'Week 21', sub:'Peak phase', phase:4, days:[
+    mk(addDays(w(21),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(21),1), '4 mi run',             'run'),
+    mk(addDays(w(21),2), '40 min tempo',         'tempo'),
+    mk(addDays(w(21),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(21),4), '4 mi run',              'run'),
+    mk(addDays(w(21),5), 'Cross-training',        'cross'),
+    mk(addDays(w(21),6), '8 mi run',              'run'),
+  ]},
+  { label:'Week 22', sub:'Peak mileage', phase:4, days:[
+    mk(addDays(w(22),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(22),1), '4 mi run',             'run'),
+    mk(addDays(w(22),2), '40 min tempo',         'tempo'),
+    mk(addDays(w(22),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(22),4), '4 mi run',              'run'),
+    mk(addDays(w(22),5), 'Cross-training',        'cross'),
+    mk(addDays(w(22),6), '8 mi run',              'run'),
+  ]},
+  { label:'Week 23', sub:'Begin taper', phase:5, days:[
+    mk(addDays(w(23),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(23),1), '4 mi run',             'run'),
+    mk(addDays(w(23),2), '35 min tempo',         'tempo'),
+    mk(addDays(w(23),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(23),4), '3.5 mi run',            'run'),
+    mk(addDays(w(23),5), 'Cross-training',        'cross'),
+    mk(addDays(w(23),6), '8 mi run',              'run'),
+  ]},
+  { label:'Week 24', sub:'Taper', phase:5, days:[
+    mk(addDays(w(24),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(24),1), '3.5 mi run',           'run'),
+    mk(addDays(w(24),2), '30 min tempo',         'tempo'),
+    mk(addDays(w(24),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(24),4), '3 mi run',              'run'),
+    mk(addDays(w(24),5), 'Cross-training',        'cross'),
+    mk(addDays(w(24),6), '7 mi run',              'run'),
+  ]},
+  { label:'Week 25', sub:'Taper', phase:5, days:[
+    mk(addDays(w(25),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(25),1), '3 mi run',             'run'),
+    mk(addDays(w(25),2), '25 min tempo',         'tempo'),
+    mk(addDays(w(25),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(25),4), '3 mi run',              'run'),
+    mk(addDays(w(25),5), 'Cross-training',        'cross'),
+    mk(addDays(w(25),6), '6 mi run',              'run'),
+  ]},
+  { label:'Week 26', sub:'Race week prep', phase:5, days:[
+    mk(addDays(w(26),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(26),1), '3 mi run',             'run'),
+    mk(addDays(w(26),2), '20 min tempo',         'tempo'),
+    mk(addDays(w(26),3), 'Stretch & Strengthen',  'strength'),
+    mk(addDays(w(26),4), '2.5 mi run',            'run'),
+    mk(addDays(w(26),5), 'Cross-training',        'cross'),
+    mk(addDays(w(26),6), '5 mi run',              'run'),
+  ]},
+  { label:'Week 27', sub:'Race week', phase:6, days:[
+    mk(addDays(w(27),0), 'Stretch & Strengthen', 'strength'),
+    mk(addDays(w(27),1), '2 mi run',             'run'),
+    mk(addDays(w(27),2), '20 min tempo',         'tempo'),
+    mk(addDays(w(27),3), 'Rest',                 'rest'),
+    mk(addDays(w(27),4), 'Rest',                 'rest'),
+    mk(addDays(w(27),5), 'Rest',                 'rest'),
+    mk(new Date(2026,9,4), '🏁 Race Day!',       'race'),
   ]},
 ];
 
-const TC = {run:'var(--run)',cross:'var(--cross)',strength:'var(--strength)',rest:'var(--rest)',race:'var(--race)'};
-const TL = {run:'Run',cross:'Cross-train',strength:'Strength',rest:'Rest',race:'Race Day'};
+const TC = { run:'var(--run)', cross:'var(--cross)', tempo:'var(--tempo)', strength:'var(--strength)', rest:'var(--rest)', race:'var(--race)' };
+const TL = { run:'Run', cross:'Cross-train', tempo:'Tempo run', strength:'Strength', rest:'Rest', race:'Race Day' };
 
-function load() { try{return JSON.parse(localStorage.getItem('hh10k')||'{}')}catch{return{}} }
-function save(s){ localStorage.setItem('hh10k',JSON.stringify(s)) }
+function load() { try { return JSON.parse(localStorage.getItem('hh10k') || '{}'); } catch { return {}; } }
+function save(s) { localStorage.setItem('hh10k', JSON.stringify(s)); }
+
+let lastPhase = -1;
 
 function render() {
   const state = load();
   const container = document.getElementById('weeks');
   container.innerHTML = '';
-  let total=0, done=0;
+  lastPhase = -1;
+  let total = 0, done = 0;
 
   WEEKS.forEach(week => {
+    if (week.phase > 0 && week.phase !== lastPhase) {
+      const p = PHASES[week.phase - 1];
+      if (p) {
+        const banner = document.createElement('div');
+        banner.className = 'phase-banner';
+        banner.style.setProperty('--phase-color', p.color);
+        banner.innerHTML = `<span class="phase-label">${p.label}</span><span class="phase-desc">${p.desc}</span>`;
+        container.appendChild(banner);
+      }
+      lastPhase = week.phase;
+    }
+
     const sec = document.createElement('div');
     sec.className = 'week-section';
 
     const hdr = document.createElement('div');
     hdr.className = 'week-header';
-    const num = document.createElement('span'); num.className='week-num'; num.textContent=week.label.toUpperCase();
-    const sub = document.createElement('span'); sub.className='week-title'; sub.textContent=week.sub;
-    const rule = document.createElement('div'); rule.className='week-rule';
-    const badge = document.createElement('span'); badge.className='week-badge'; badge.textContent='✓ Done';
-    hdr.append(num,sub,rule,badge);
+    const num = document.createElement('span'); num.className = 'week-num'; num.textContent = week.label.toUpperCase();
+    const sub = document.createElement('span'); sub.className = 'week-title'; sub.textContent = week.sub;
+    const rule = document.createElement('div'); rule.className = 'week-rule';
+    const badge = document.createElement('span'); badge.className = 'week-badge'; badge.textContent = '✓ Done';
+    hdr.append(num, sub, rule, badge);
     sec.appendChild(hdr);
 
     const list = document.createElement('div');
     list.className = 'days-list';
-    let wt=0,wd=0;
+    let wt = 0, wd = 0;
 
     week.days.forEach(day => {
       const k = key(day.date);
       const isDone = !!state[k];
-      const isToday = sameDay(day.date,TODAY);
+      const isToday = sameDay(day.date, TODAY);
       const isPast = day.date < TODAY && !isToday;
-      const isRest = day.type==='rest';
-      const isRace = day.type==='race';
+      const isRest = day.type === 'rest';
+      const isRace = day.type === 'race';
 
-      if (!isRest){ wt++; total++; if(isDone){wd++;done++;} }
+      if (!isRest) { wt++; total++; if (isDone) { wd++; done++; } }
 
       const row = document.createElement('div');
-      let cls='day-row';
-      if(isDone) cls+=' done';
-      if(isToday) cls+=' today';
-      if(isPast&&!isDone) cls+=' past';
-      if(isRest) cls+=' is-rest';
-      if(isRace) cls+=' is-race';
-      row.className=cls;
+      let cls = 'day-row';
+      if (isDone) cls += ' done';
+      if (isToday) cls += ' today';
+      if (isPast && !isDone) cls += ' past';
+      if (isRest) cls += ' is-rest';
+      if (isRace) cls += ' is-race';
+      row.className = cls;
       row.style.setProperty('--tc', TC[day.type]);
 
-      // Stamp
-      const stamp = document.createElement('div');
-      stamp.className='stamp';
-      const sd=document.createElement('div'); sd.className='stamp-day';
-      if(isToday){ const tl=document.createElement('span'); tl.className='today-label'; tl.textContent='Today'; sd.appendChild(tl); }
-      else { sd.textContent=DAY_NAMES[day.date.getDay()]; }
-      const sn=document.createElement('div'); sn.className='stamp-date'; sn.textContent=day.date.getDate();
-      stamp.append(sd,sn);
+      const stamp = document.createElement('div'); stamp.className = 'stamp';
+      const sd = document.createElement('div'); sd.className = 'stamp-day';
+      if (isToday) { const tl = document.createElement('span'); tl.className = 'today-label'; tl.textContent = 'Today'; sd.appendChild(tl); }
+      else { sd.textContent = DAY_NAMES[day.date.getDay()]; }
+      const sn = document.createElement('div'); sn.className = 'stamp-date'; sn.textContent = day.date.getDate();
+      const sm = document.createElement('div'); sm.className = 'stamp-month'; sm.textContent = MONTHS[day.date.getMonth()];
+      stamp.append(sd, sn, sm);
 
-      const vl=document.createElement('div'); vl.className='vline';
+      const vl = document.createElement('div'); vl.className = 'vline';
 
-      const info=document.createElement('div'); info.className='info';
-      const wn=document.createElement('div'); wn.className='workout-name'; wn.textContent=day.workout;
-      const wt2=document.createElement('div'); wt2.className='workout-type'; wt2.textContent=TL[day.type];
-      info.append(wn,wt2);
+      const info = document.createElement('div'); info.className = 'info';
+      const wn = document.createElement('div'); wn.className = 'workout-name'; wn.textContent = day.workout;
+      const wt2 = document.createElement('div'); wt2.className = 'workout-type'; wt2.textContent = TL[day.type];
+      info.append(wn, wt2);
 
-      row.append(stamp,vl,info);
+      row.append(stamp, vl, info);
 
-      if(!isRest){
-        const cc=document.createElement('div'); cc.className='check-circle';
-        cc.innerHTML=`<svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>`;
+      if (!isRest) {
+        const cc = document.createElement('div'); cc.className = 'check-circle';
+        cc.innerHTML = `<svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>`;
         row.appendChild(cc);
-        row.addEventListener('click',()=>{
-          const s=load();
-          if(s[k]) delete s[k]; else s[k]=true;
+        row.addEventListener('click', () => {
+          const s = load();
+          if (s[k]) delete s[k]; else s[k] = true;
           save(s); render();
         });
       }
@@ -529,19 +631,19 @@ function render() {
       list.appendChild(row);
     });
 
-    if(wt>0&&wd===wt) badge.classList.add('visible');
+    if (wt > 0 && wd === wt) badge.classList.add('visible');
     sec.appendChild(list);
     container.appendChild(sec);
   });
 
-  const pct = total>0?Math.round((done/total)*100):0;
-  document.getElementById('pct').textContent=pct+'%';
-  document.getElementById('fill').style.width=pct+'%';
-  document.getElementById('done-count').textContent=`${done} of ${total} done`;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('pct').textContent = pct + '%';
+  document.getElementById('fill').style.width = pct + '%';
+  document.getElementById('done-count').textContent = `${done} of ${total} done`;
 }
 
-function resetAll(){
-  if(confirm('Reset all progress?')){ localStorage.removeItem('hh10k'); render(); }
+function resetAll() {
+  if (confirm('Reset all progress?')) { localStorage.removeItem('hh10k'); render(); }
 }
 
 render();
